@@ -49,9 +49,11 @@ fTestCompleteRateData=json.loads(fTestCompleteRateRead)
 
 result=dict()
 timesRecords=[]
+reD={}
 for key,value in fTestCompleteRateData.items():
     timesRecords.append(value["testsCommitTimesAVG"])
-result["commitTimes"]=timesRecords
+reD["allCommitTimes"]=timesRecords
+result["commitTimes"]=reD
 
 allCommitTimes=open("allCommitTimes.json",'w')
 allCommitTimes.write(json.dumps(result,ensure_ascii=False,indent=4))
@@ -67,14 +69,15 @@ fTestCompleteRate=open("commitTimes.json")
 fTestCompleteRateRead=fTestCompleteRate.read()
 fTestCompleteRateData=json.loads(fTestCompleteRateRead)
 
-reDict=()
+reDict={}
 commitTimes_rank_score=0
 
 for key,value in fTestCompleteRateData.items():
-    userDict=()
+    userD={}
     useid=key
-    AVGcommitTimes=value["testCommitTimesAVG"]
-
+    rank=0
+    commitlist=[]
+    AVGcommitTimes=value["testsCommitTimesAVG"]
     # commitTimes_rank_score=100
     if AVGcommitTimes==0:
         commitTimes_rank_score=0
@@ -82,16 +85,18 @@ for key,value in fTestCompleteRateData.items():
         rank=0
         allValidRank=0
         for k, v in allCommitTimesData.items():
-            commitlist = list(v["commitTimes"])
+            commitlist = list(v["allCommitTimes"])
             while 0 in commitlist:
                 commitlist.remove(0)
             commitlist.sort()
             allValidRank = len(commitlist)
-            rank = commitlist.index(AVGcommitTimes) + 1
+            rank = commitlist.index(AVGcommitTimes)+1
         commitTimes_rank_score=round(100*(allValidRank-rank)/(allValidRank-1),2)
-    userDict["user_id"]=useid
-    userDict["commitTimes_rank_score"]=commitTimes_rank_score
-    reDict[key]=userDict
+    userD["user_id"]=useid
+    #userD["commitlist"]=commitlist
+    userD["rank"]=rank
+    userD["commitTimes_rank_score"]=commitTimes_rank_score
+    reDict[key]=userD
 scoreRank=open("commitTimesRank.json",'w')
 scoreRank.write(json.dumps(reDict,indent=4))
 scoreRank.close()
