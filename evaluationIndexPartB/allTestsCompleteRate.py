@@ -9,6 +9,7 @@ data = json.loads(res)
 resultDict = dict() # 返回的结果，里面有所有题目的完成率
 completedNumber = 0
 for key,value in data.items():
+    completedNumber=0
     for case in value["cases"]:
         if case["final_score"] == 100:
             completedNumber += 1
