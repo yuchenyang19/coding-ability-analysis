@@ -4,8 +4,6 @@ f = open('../test_data.json', encoding='utf-8')
 res = f.read()
 data = json.loads(res)
 
-# 各类型题目完成率：eachTypeCompleteRate.json "test_each_type_complete_score"
-
 resultDict = dict() # 返回的结果，里面有所有题目的完成率
 completedNumber = 0
 for key,value in data.items():

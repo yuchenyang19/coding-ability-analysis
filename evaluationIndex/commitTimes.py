@@ -4,7 +4,7 @@ f = open('../test_data.json', encoding='utf-8')
 res = f.read()
 data = json.loads(res)
 
-# 每类题目提交次数：eachTypeCommitRate.json "test_each_type_complete_score"
+# 各题目提交次数：commitTimesRank.json "commitTimes_rank_score"
 resultDict = dict()
 timesResultDict=dict() # 返回的restult，内含所有同学每道题的提交次数
 timesTestDict={} # 一个同学200道题每道题的提交次数
