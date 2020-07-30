@@ -1,6 +1,6 @@
 import json
 
-f = open('../test_data.json', encoding='utf-8')
+f = open('../data/test_data.json', encoding='utf-8')
 res = f.read()
 data = json.loads(res)
 
@@ -37,13 +37,13 @@ for key, value in data.items():# 遍历所有同学的数据
     timesResultDict[key]=userDict
 
 
-fTestCompleteRate = open("commitTimes.json", 'w')
+fTestCompleteRate = open("../data/commitTimes.json", 'w')
 fTestCompleteRate.write(json.dumps(timesResultDict, ensure_ascii=False, indent=4))
 fTestCompleteRate.close()
 f.close()
 
 # 获得所有人平均每题的提交次数
-fTestCompleteRate = open("commitTimes.json")
+fTestCompleteRate = open("../data/commitTimes.json")
 fTestCompleteRateRead=fTestCompleteRate.read()
 fTestCompleteRateData=json.loads(fTestCompleteRateRead)
 
@@ -55,17 +55,17 @@ for key,value in fTestCompleteRateData.items():
 reD["allCommitTimes"]=timesRecords
 result["commitTimes"]=reD
 
-allCommitTimes=open("allCommitTimes.json",'w')
+allCommitTimes=open("../data/allCommitTimes.json",'w')
 allCommitTimes.write(json.dumps(result,ensure_ascii=False,indent=4))
 allCommitTimes.close()
 fTestCompleteRate.close()
 
 # 对每一题的提交次数进行排名，每题算出排名占比（公式为100*（总数-排名）/总数-1），并算出每个人所有题目排名占比的平均值
 
-allCommitTimes=open("allCommitTimes.json")
+allCommitTimes=open("../data/allCommitTimes.json")
 allCommitTimesRead=allCommitTimes.read()
 allCommitTimesData=json.loads(allCommitTimesRead)
-fTestCompleteRate=open("commitTimes.json")
+fTestCompleteRate=open("../data/commitTimes.json")
 fTestCompleteRateRead=fTestCompleteRate.read()
 fTestCompleteRateData=json.loads(fTestCompleteRateRead)
 
@@ -97,7 +97,7 @@ for key,value in fTestCompleteRateData.items():
     userD["rank"]=rank
     userD["commitTimes_rank_score"]=commitTimes_rank_score
     reDict[key]=userD
-scoreRank=open("commitTimesRank.json",'w')
+scoreRank=open("../data/commitTimesRank.json",'w')
 scoreRank.write(json.dumps(reDict,indent=4))
 scoreRank.close()
 

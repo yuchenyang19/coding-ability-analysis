@@ -130,7 +130,7 @@ for i in range(len(li)):
 
 f1_weight = get_weight(get_fuzzy_consistent_matrix(f1))
 
-f = open('dataCollect.json')
+f = open('../data/dataCollect.json')
 res = f.read()
 data = json.loads(res)
 
@@ -151,6 +151,6 @@ for key, value in data.items():
     f1_matrix = np.array(f1_matrix)
     value["score"] = round(get_evaluation(f1_weight, get_fuzzy_evaluation_matrix(f1_matrix)), 2)
 
-f_result = open("dataSet.json", 'w')
+f_result = open("../data/dataSet.json", 'w')
 f_result.write(json.dumps(data, indent=4))
 f_result.close()

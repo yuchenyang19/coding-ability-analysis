@@ -1,6 +1,6 @@
 import json
 
-f = open('../test_data.json', encoding='utf-8')
+f = open('../data/test_data.json', encoding='utf-8')
 res = f.read()
 data = json.loads(res)
 
@@ -28,14 +28,14 @@ for key, value in data.items():
     userDict["user_id"] = key
     userDict["cases"] = casesList
     rateDict[key] = userDict
-eachTestScoreRate = open('eachTestScoreRate.json', 'w')
+eachTestScoreRate = open('../data/eachTestScoreRate.json', 'w')
 eachTestScoreRate.write(json.dumps(rateDict, indent=4))
 eachTestScoreRate.close()
 f.close()
 
 # 2、获得每一题的所有分数增长率
 
-eachTestScoreRate = open('eachTestScoreRate.json')
+eachTestScoreRate = open('../data/eachTestScoreRate.json')
 eachTestScoreRateRead = eachTestScoreRate.read()
 eachTestScoreRateData = json.loads(eachTestScoreRateRead)
 
@@ -58,17 +58,17 @@ for key, value in eachTestScoreRateData.items():
         tmp["case_num"] = len(li)
         tmp["all_rate_of_increase"] = li
         re[caseId] = tmp
-allScoreRates = open('allScoreRates.json', 'w')
+allScoreRates = open('../data/allScoreRates.json', 'w')
 allScoreRates.write(json.dumps(re, indent=4))
 allScoreRates.close()
 eachTestScoreRate.close()
 
 # 3、对每一题的增长率进行排名，每题算出排名占比（公式为100*（总数-排名）/总数-1），并算出每个人所有题目排名占比的平均值
 
-allScoreRates = open('allScoreRates.json')
+allScoreRates = open('../data/allScoreRates.json')
 allScoreStr = allScoreRates.read()
 allScoreData = json.loads(allScoreStr)
-eachTestScoreRate = open('eachTestScoreRate.json')
+eachTestScoreRate = open('../data/eachTestScoreRate.json')
 eachTestScoreRateRead = eachTestScoreRate.read()
 eachTestScoreRateData = json.loads(eachTestScoreRateRead)
 rankDic = dict()
@@ -108,6 +108,6 @@ for key, value in eachTestScoreRateData.items():
     userDict["cases_rates_rank_average"] = caseRateRankScoreListAverage
     userDict["cases"] = caseList
     rankDic[userId] = userDict
-fScoreRatesRank = open("scoreRatesRank.json", 'w')
+fScoreRatesRank = open("../data/scoreRatesRank.json", 'w')
 fScoreRatesRank.write(json.dumps(rankDic, indent=4))
 fScoreRatesRank.close()

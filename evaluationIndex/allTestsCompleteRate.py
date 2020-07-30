@@ -1,6 +1,6 @@
 import json
 
-f = open('../test_data.json', encoding='utf-8')
+f = open('../data/test_data.json', encoding='utf-8')
 res = f.read()
 data = json.loads(res)
 
@@ -14,7 +14,7 @@ for key,value in data.items():
     resultDict[key] = min(completedNumber, 200)/200*100
 
 
-fTestCompleteRate = open("allTestsCompleteRate.json", 'w')
+fTestCompleteRate = open("../data/allTestsCompleteRate.json", 'w')
 fTestCompleteRate.write(json.dumps(resultDict, ensure_ascii=False, indent=4))
 fTestCompleteRate.close()
 f.close()

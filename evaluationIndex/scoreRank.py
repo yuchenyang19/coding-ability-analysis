@@ -1,13 +1,13 @@
 import json
 
-f = open('../test_data.json', encoding='utf-8')
+f = open('../data/test_data.json', encoding='utf-8')
 res = f.read()
 data = json.loads(res)
 
 # 各题分数排名：scoreRank.json "cases_rank_average"
 # 1、遍历所有题目，获得每一题的做的数量和所有分数
 
-fAllScore = open("allScore.json", 'w')
+fAllScore = open("../data/allScore.json", 'w')
 exeId = []
 re = dict()
 for key, value in data.items():
@@ -32,10 +32,10 @@ fAllScore.close()
 
 # 2、对每个学生进行每题的排名,每题算出排名占比（公式为100*（总数-排名）/总数-1），并算出每个人所有题目排名占比的平均值
 
-fAllScore = open('allScore.json')
+fAllScore = open('../data/allScore.json')
 fAllScoreStr = fAllScore.read()
 fAllScoreData = json.loads(fAllScoreStr)
-fScoreRank = open("scoreRank.json", 'w')
+fScoreRank = open("../data/scoreRank.json", 'w')
 rankDic = dict()
 for key, value in data.items():
     userDict = dict()

@@ -7,7 +7,7 @@ import json
 # 读数据
 x_data = []
 y_data = []
-f = open('dataSet.json')
+f = open('../data/dataSet.json')
 res = f.read()
 data = json.loads(res)
 for k, v in data.items():
@@ -51,4 +51,4 @@ sgd = SGD(lr=0.1, decay=1e-6, momentum=0.9, nesterov=True)
 model.compile(loss='mse',
               optimizer=sgd)
 model.fit(x_train, y_train, epochs=epoch, batch_size=10, validation_data=(x_valid, y_valid))
-model.save('model.h5')
+model.save('../data/model.h5')

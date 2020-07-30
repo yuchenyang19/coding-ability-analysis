@@ -1,6 +1,6 @@
 import json
 
-f = open('../test_data.json', encoding='utf-8')
+f = open('../data/test_data.json', encoding='utf-8')
 res = f.read()
 data = json.loads(res)
 
@@ -35,7 +35,7 @@ for key, value in data.items():
     testDict["test_each_type_complete_score"] = round(CompleteRateScore, 2)
     resultDict[key] = testDict
 
-fTestCompleteRate = open("eachTypeCompleteRate.json", 'w')
+fTestCompleteRate = open("../data/eachTypeCompleteRate.json", 'w')
 fTestCompleteRate.write(json.dumps(resultDict, ensure_ascii=False, indent=4))
 fTestCompleteRate.close()
 f.close()
